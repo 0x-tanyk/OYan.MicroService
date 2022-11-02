@@ -1,0 +1,25 @@
+dotnet启动：
+dotnet run --urls="http://*:6100" --ip=127.0.0.1 --port=6100
+
+dotnet run --urls="http://*:6201" --ip=127.0.0.1 --port=6201
+dotnet run --urls="http://*:6202" --ip=127.0.0.1 --port=6202
+dotnet run --urls="http://*:6203" --ip=127.0.0.1 --port=6203
+
+dotnet run --urls="http://*:6301" --ip=127.0.0.1 --port=6301
+dotnet run --urls="http://*:6302" --ip=127.0.0.1 --port=6302
+dotnet run --urls="http://*:6303" --ip=127.0.0.1 --port=6303
+
+docker启动：
+docker build -t gateway:v1.0 -f Dockerfile_Gateway .
+docker build -t order:v1.0 -f Dockerfile_Order .
+docker build -t store:v1.0 -f Dockerfile_Store .
+
+docker run -d -p 6100:80 -e ASPNETCORE_ENVIRONMENT="Development" -e ip="172.18.0.2" -e port="6100" gateway:v1.0
+
+docker run -d -p 6201:80 -e ASPNETCORE_ENVIRONMENT="Development" -e ip="127.0.0.1" -e port="6201" order:v1.0
+docker run -d -p 6202:80 -e ASPNETCORE_ENVIRONMENT="Development" -e ip="127.0.0.1" -e port="6202" order:v1.0
+docker run -d -p 6203:80 -e ASPNETCORE_ENVIRONMENT="Development" -e ip="127.0.0.1" -e port="6203" order:v1.0
+
+docker run -d -p 6301:80 -e ASPNETCORE_ENVIRONMENT="Development" -e ip="127.0.0.1" -e port="6301" store:v1.0
+docker run -d -p 6302:80 -e ASPNETCORE_ENVIRONMENT="Development" -e ip="127.0.0.1" -e port="6302" store:v1.0
+docker run -d -p 6303:80 -e ASPNETCORE_ENVIRONMENT="Development" -e ip="127.0.0.1" -e port="6303" store:v1.0

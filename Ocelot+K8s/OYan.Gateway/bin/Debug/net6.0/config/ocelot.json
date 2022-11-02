@@ -1,0 +1,54 @@
+{
+  "Routes": [
+    {
+      "DownstreamPathTemplate": "/doc/order/v1.0/swagger.json",
+      "DownstreamScheme": "http",
+      "UpstreamPathTemplate": "/doc/order/v1.0/swagger.json",
+      "UpstreamHttpMethod": [ "GET", "POST", "DELETE", "PUT" ],
+      "UseServiceDiscovery": true,
+      "ServiceName": "order-svc",
+      "LoadBalancerOptions": {
+        "type": "RoundRobin"
+      }
+    },
+    {
+      "DownstreamPathTemplate": "/doc/store/v1.0/swagger.json",
+      "DownstreamScheme": "http",
+      "UpstreamPathTemplate": "/doc/store/v1.0/swagger.json",
+      "UpstreamHttpMethod": [ "GET", "POST", "DELETE", "PUT" ],
+      "UseServiceDiscovery": true,
+      "ServiceName": "store-svc",
+      "LoadBalancerOptions": {
+        "type": "RoundRobin"
+      }
+    },
+    {
+      "DownstreamPathTemplate": "/api/order/{url}",
+      "DownstreamScheme": "http",
+      "UpstreamPathTemplate": "/api/order/{url}",
+      "UpstreamHttpMethod": [ "GET", "POST", "DELETE", "PUT" ],
+      "UseServiceDiscovery": true,
+      "ServiceName": "order-svc",
+      "LoadBalancerOptions": {
+        "type": "RoundRobin"
+      }
+    },
+    {
+      "DownstreamPathTemplate": "/api/store/{url}",
+      "DownstreamScheme": "http",
+      "UpstreamPathTemplate": "/api/store/{url}",
+      "UpstreamHttpMethod": [ "GET", "POST", "DELETE", "PUT" ],
+      "UseServiceDiscovery": true,
+      "ServiceName": "store-svc",
+      "LoadBalancerOptions": {
+        "type": "RoundRobin"
+      }
+    }
+  ],
+  "GlobalConfiguration": {
+    "ServiceDiscoveryProvider": {
+      "Namespace": "dev",
+      "Type": "kube"
+    }
+  }
+}

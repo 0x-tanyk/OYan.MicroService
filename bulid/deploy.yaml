@@ -1,0 +1,198 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: default-http-backend
+  namespace: dev
+  labels:
+    app: default-http-backend
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: default-http-backend
+  template:
+    metadata:
+      labels:
+        app: default-http-backend
+    spec:
+      terminationGracePeriodSeconds: 60
+      containers:
+      - name: default-http-backend
+        # Any image is permissible as long as:
+        # 1. It serves a 404 page at /
+        # 2. It serves 200 on a /healthz endpoint
+        image: registry.cn-hangzhou.aliyuncs.com/google_containers/defaultbackend:1.4
+        livenessProbe:
+          httpGet:
+            path: /healthz
+            port: 8080
+            scheme: HTTP
+          initialDelaySeconds: 30
+          timeoutSeconds: 5
+        ports:
+        - containerPort: 8080
+        resources:
+          limits:
+            cpu: 10m
+            memory: 20Mi
+          requests:
+            cpu: 10m
+            memory: 20Mi
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: default-http-backend
+  namespace: dev
+  labels:
+    app: default-http-backend
+spec:
+  ports:
+  - port: 80
+    targetPort: 8080
+  selector:
+    app: default-http-backend
+
+
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: gateway
+  namespace: dev
+  labels:
+    app: gateway
+spec:
+  selector:
+    matchLabels:
+      app: gateway
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: gateway
+    spec:
+      containers:
+      - name: gateway
+        image: gateway:k8s_v1.0
+        ports:
+        - containerPort: 80
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: gateway-svc
+  namespace: dev
+spec:
+  selector:
+    app: gateway
+  ports:
+  - port: 80
+    protocol: TCP
+    targetPort: 80
+
+
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: order
+  namespace: dev
+  labels:
+    app: order
+spec:
+  selector:
+    matchLabels:
+      app: order
+  replicas: 3
+  template:
+    metadata:
+      labels:
+        app: order
+    spec:
+      containers:
+      - name: order
+        image: order:k8s_v1.0
+        ports:
+        - containerPort: 80
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: order-svc
+  namespace: dev
+spec:
+  selector:
+    app: order
+  ports:
+  - port: 80
+    protocol: TCP
+    targetPort: 80
+
+
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: store
+  namespace: dev
+  labels:
+    app: store
+spec:
+  selector:
+    matchLabels:
+      app: store
+  replicas: 3
+  template:
+    metadata:
+      labels:
+        app: store
+    spec:
+      containers:
+      - name: store
+        image: store:k8s_v1.0
+        ports:
+        - containerPort: 80
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: store-svc
+  namespace: dev
+spec:
+  selector:
+    app: store
+  ports:
+  - port: 80
+    protocol: TCP
+    targetPort: 80
+
+
+---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: gateway-ingress
+  namespace: dev
+spec:
+  defaultBackend:
+    service:
+      name: default-http-backend
+      port: 
+          number: 80 
+  ingressClassName: nginx
+  rules:
+  - host: www.myapis.com
+    http:
+      paths:
+      - pathType: Prefix
+        path: "/"
+        backend:
+          service:
+            name: gateway-svc
+            port: 
+              number: 80

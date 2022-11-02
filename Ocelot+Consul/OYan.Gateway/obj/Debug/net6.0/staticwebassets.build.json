@@ -1,0 +1,11 @@
+{
+  "Version": 1,
+  "Hash": "e/rGfCRflrIo9h7xZ20vErgSoZtNDV8g6T4qpipHr8c=",
+  "Source": "OYan.Gateway",
+  "BasePath": "_content/OYan.Gateway",
+  "Mode": "Default",
+  "ManifestType": "Build",
+  "ReferencedProjectsConfiguration": [],
+  "DiscoveryPatterns": [],
+  "Assets": []
+}

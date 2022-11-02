@@ -1,0 +1,5 @@
+# server
+docker run -p 8500:8500 --name=consulserver consul agent -server -bootstrap -client=0.0.0.0 -ui -node=0
+docker run -d --name=consulserver1 consul agent -server -node=1 -join=172.17.0.2
+# client
+docker run --name=consulclient0 -e consul agent -client=0.0.0.0 -node=client0 -retry-join=172.17.0.2

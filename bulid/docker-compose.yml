@@ -1,0 +1,129 @@
+version: '3.9'
+services:
+  consul_s0:
+    image: consul:1.13.2
+    restart: always
+    container_name: s0
+    hostname: s0
+    command: agent -server -bootstrap -bind=0.0.0.0 -client=0.0.0.0 -ui -node=s0
+    ports:
+      - 8500:8500
+  consul_s1:
+    image: consul:1.13.2
+    restart: always
+    container_name: s1
+    hostname: s1
+    command: agent -server -bind=0.0.0.0 -client=0.0.0.0 -join=s0 -node=s1
+    depends_on:
+      - consul_s0
+  consul_s2:
+    image: consul:1.13.2
+    restart: always
+    container_name: s2
+    hostname: s2
+    command: agent -server -bind=0.0.0.0 -client=0.0.0.0 -join=s0 -node=s2
+    depends_on:
+      - consul_s0
+  consul_c0:
+    image: consul:1.13.2
+    restart: always
+    container_name: c0
+    hostname: c0
+    command: agent -bind=0.0.0.0 -client=0.0.0.0 -retry-join=s0 -node=c0
+    depends_on:
+      - consul_s1
+      - consul_s2
+    ports:
+      - 8600:8500
+  consul_c1:
+    image: consul:1.13.2
+    restart: always
+    container_name: c1
+    hostname: c1
+    command: agent -bind=0.0.0.0 -client=0.0.0.0 -retry-join=s0 -node=c1
+    depends_on:
+      - consul_s1
+      - consul_s2
+    ports:
+      - 8700:8500
+  consul_c2:
+    image: consul:1.13.2
+    restart: always
+    container_name: c2
+    hostname: c2
+    command: agent -bind=0.0.0.0 -client=0.0.0.0 -retry-join=s0 -node=c2
+    depends_on:
+      - consul_s1
+      - consul_s2
+    ports:
+      - 8800:8500
+
+  net_gateway:    
+    image: gateway:con_v1.0
+    restart: always
+    container_name: net_gateway
+    ports:
+      - 6100:80
+    command: "dotnet /app/OYan.Gateway.dll --urls='http://*:6100' --ip=192.168.199.206 --port=6100"
+
+  net_order0:    
+    image: order:con_v1.0
+    restart: always
+    container_name: net_order0
+    ports:
+      - 6201:80
+    command: "dotnet /app/OYan.Order.dll --urls='http://*:6201' --ip=192.168.199.206 --port=6201"
+    depends_on:
+      - consul_s0
+      - consul_c0 
+  net_order1:
+    image: order:con_v1.0
+    restart: always
+    container_name: net_order1
+    ports:
+      - 6202:80
+    command: "dotnet /app/OYan.Order.dll --urls='http://*:6202' --ip=192.168.199.206 --port=6202"
+    depends_on:
+      - consul_s0
+      - consul_c0
+  net_order2:
+    image: order:con_v1.0
+    restart: always
+    container_name: net_order2
+    ports:
+      - 6203:80
+    command: "dotnet /app/OYan.Order.dll --urls='http://*:6203' --ip=192.168.199.206 --port=6203"
+    depends_on:
+      - consul_s0
+      - consul_c0
+
+  net_store0:    
+    image: store:con_v1.0
+    restart: always
+    container_name: net_store0
+    ports:
+      - 6301:80
+    command: "dotnet /app/OYan.Store.dll --urls='http://*:6301' --ip=192.168.199.206 --port=6301"
+    depends_on:
+      - consul_s0
+      - consul_c1 
+  net_store1:
+    image: store:con_v1.0
+    restart: always
+    container_name: net_store1
+    ports:
+      - 6302:80
+    command: "dotnet /app/OYan.Store.dll --urls='http://*:6302' --ip=192.168.199.206 --port=6302"
+    depends_on:
+      - consul_s0
+      - consul_c1
+  net_store2:
+    image: store:con_v1.0
+    restart: always
+    container_name: net_store2
+    ports:
+      - 6303:80
+    command: "dotnet /app/OYan.Store.dll --urls='http://*:6303' --ip=192.168.199.206 --port=6303"
+    depends_on:
+      - consul_s0
+      - consul_c1

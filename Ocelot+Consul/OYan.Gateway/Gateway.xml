@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>OYan.Gateway</name>
+    </assembly>
+    <members>
+        <member name="T:OYan.Gateway.Controllers.HealthController">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:OYan.Gateway.Controllers.HealthController.Get">
+            <summary>
+            健康检查
+            </summary>
+            <returns></returns>
+        </member>
+    </members>
+</doc>

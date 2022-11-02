@@ -1,0 +1,11 @@
+docker build -t gateway:con_v1.0 -f Dockerfile_Gateway_Consul .
+docker build -t order:con_v1.0 -f Dockerfile_Order_Consul .
+docker build -t store:con_v1.0 -f Dockerfile_Store_Consul .
+
+
+docker build -t gateway:k8s_v1.0 -f Dockerfile_Gateway_K8s .
+docker build -t order:k8s_v1.0 -f Dockerfile_Order_K8s .
+docker build -t store:k8s_v1.0 -f Dockerfile_Store_K8s .
+
+# No authentication needed for /doc/Order/v1.0/swagger.json，需要执行以下语句
+kubectl create clusterrolebinding k8s-api-admin --clusterrole=cluster-admin --user=admin --user=kubelet --group=system:serviceaccounts --serviceaccount=dev:default

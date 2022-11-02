@@ -1,0 +1,41 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>OYan.Store</name>
+    </assembly>
+    <members>
+        <member name="T:OYan.Store.Controllers.HealthController">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:OYan.Store.Controllers.HealthController.Get">
+            <summary>
+            健康检查
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:OYan.Store.Controllers.TestController">
+            <summary>
+            测试
+            </summary>
+        </member>
+        <member name="F:OYan.Store.Controllers.TestController._config">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:OYan.Store.Controllers.TestController.#ctor(Microsoft.Extensions.Configuration.IConfiguration)">
+            <summary>
+            ctor
+            </summary>
+            <param name="config"></param>
+        </member>
+        <member name="M:OYan.Store.Controllers.TestController.GetVaules">
+            <summary>
+            getValues
+            </summary>
+            <returns></returns>
+        </member>
+    </members>
+</doc>
