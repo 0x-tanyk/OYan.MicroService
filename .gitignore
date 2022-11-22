@@ -25,6 +25,7 @@
 bld/
 [Bb]in/
 [Oo]bj/
+.vs/
 
 # MSTest test Results
 [Tt]est[Rr]esult*/
@@ -213,10 +214,8 @@ UpgradeLog*.htm
 */bin/
 */obj/
 */obj/Debug/
-*/vs/
 */gen/
 */out/
-*.vs/
 
 # Microsoft Fakes
 FakesAssemblies/
