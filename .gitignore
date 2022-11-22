@@ -208,16 +208,15 @@ UpgradeLog*.htm
 *.bim.layout
 *.bim_*.settings
 
-<<<<<<< HEAD
+
 # Generated files
+*/Debug/
 */bin/
 */obj/
 */vs/
 */gen/
 */out/
 
-=======
->>>>>>> 0c76c497bb30d69d2101739df1ef30f49368df99
 # Microsoft Fakes
 FakesAssemblies/
 
