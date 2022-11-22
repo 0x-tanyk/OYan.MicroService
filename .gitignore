@@ -23,7 +23,6 @@ bld/
 [Oo]bj/
 
 # Visual Studio 2015 cache/options directory
-.vs/
 # Uncomment if you have tasks that create the project's static files in wwwroot
 #wwwroot/
 
@@ -216,6 +215,7 @@ UpgradeLog*.htm
 */vs/
 */gen/
 */out/
+*.vs/
 
 # Microsoft Fakes
 FakesAssemblies/
