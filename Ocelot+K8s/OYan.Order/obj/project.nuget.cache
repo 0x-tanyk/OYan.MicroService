@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "ARlHtH0NBRBJK8u6DtbZ6yVASN58IWgsOtQoXC0aJuRayIlFDhULbYDJ0QiAW+Wa+Fyea+3RGa29SodN1D0VSQ==",
+  "dgSpecHash": "4noFGXQWqmu63Cd/zhupR7a1JJnycHFicUi+8aNm5u8pgrb5E8ahbgMRNkEn7YdboHUGusjtI5LNkvP5q842mw==",
   "success": true,
   "projectFilePath": "E:\\repos\\MyCode\\OYan.MicroService\\Ocelot+K8s\\OYan.Order\\OYan.Order.csproj",
   "expectedPackageFiles": [

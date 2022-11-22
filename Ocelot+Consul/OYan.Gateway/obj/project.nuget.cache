@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "KkIOOMw4rK6wi7JjM+KKsiTqPreLxnvc8XK6skcqChvCt3luchO/9NjG7kzBwR+If+p4qFrWgFXAJwhVUs+jMA==",
+  "dgSpecHash": "o0nWeXlG3mV1YfQmy42Ni+KdLu4vpLKpaPgiV2nWMmtTyPnpKEEZmgQSGTMy1bh15S6pMFhCH5iQ21+u7bCVNQ==",
   "success": true,
   "projectFilePath": "E:\\repos\\MyCode\\OYan.MicroService\\Ocelot+Consul\\OYan.Gateway\\OYan.Gateway.csproj",
   "expectedPackageFiles": [
