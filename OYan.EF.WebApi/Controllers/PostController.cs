@@ -7,7 +7,7 @@ namespace OYan.EF.WebApi.Controllers
     /// <summary>
     /// 文章
     /// </summary>
-    [Route("api/blog")]
+    [Route("api/post")]
     [ApiVersion("1.0")]
     [ApiController]
     public class PostController : Controller
