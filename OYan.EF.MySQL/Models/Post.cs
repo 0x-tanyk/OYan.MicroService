@@ -1,4 +1,5 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace OYan.EF.MySQL.Models
 {
@@ -22,15 +23,16 @@ namespace OYan.EF.MySQL.Models
         /// 内容
         /// </summary>
         public string Content { get; set; }
-        
+
         /// <summary>
         /// 
         /// </summary>
+        [ForeignKey("PK_Blogs")]
         public int BlogId { get; set; }
 
         /// <summary>
         /// 
         /// </summary>
-        public Blog Blog { get; set; }
+        public virtual Blog? Blog { get; set; }
     }
 }
