@@ -21,6 +21,6 @@ namespace OYan.EF.MySQL.Models
         /// <summary>
         /// 文章集合
         /// </summary>
-        public virtual List<Post> Posts { get; set; }
+        public virtual List<Post>? Posts { get; set; }
     }
 }

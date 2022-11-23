@@ -5,23 +5,22 @@ using OYan.EF.MySQL.Models;
 namespace OYan.EF.WebApi.Controllers
 {
     /// <summary>
-    /// 博客
+    /// 文章
     /// </summary>
     [Route("api/blog")]
     [ApiVersion("1.0")]
     [ApiController]
-    public class BlogController : Controller
-    {
-        /// <summary>
-        /// 
-        /// </summary>
+    public class PostController : Controller
+    {/// <summary>
+     /// 
+     /// </summary>
         public readonly OYanDbContext dbContext;
 
         /// <summary>
         /// 
         /// </summary>
         /// <param name="_context"></param>
-        public BlogController(OYanDbContext _context)
+        public PostController(OYanDbContext _context)
         {
             dbContext = _context;
         }
@@ -33,40 +32,40 @@ namespace OYan.EF.WebApi.Controllers
         [HttpGet, Route("list")]
         public IActionResult List()
         {
-            return Ok(dbContext.Blogs.ToList());
+            return Ok(dbContext.Posts.ToList());
         }
 
         /// <summary>
         /// 新增
         /// </summary>
-        /// <param name="blog">博客信息</param>
+        /// <param name="post">文章信息</param>
         /// <returns>操作结果</returns>
         [HttpPost, Route("create")]
-        public IActionResult Create(Blog blog)
+        public IActionResult Create(Post post)
         {
-            dbContext.Blogs.Attach(blog);
+            dbContext.Posts.Attach(post);
             return Ok(dbContext.SaveChanges());
         }
 
         /// <summary>
         /// 删除
         /// </summary>
-        /// <param name="blogId">博客Id</param>
+        /// <param name="postId">文章Id</param>
         /// <returns>操作结果</returns>
         [HttpDelete, Route("delete")]
-        public IActionResult Delete(int blogId)
+        public IActionResult Delete(int postId)
         {
-            var blog = dbContext.Blogs.SingleOrDefault(b => b.BlogId == blogId);
-            if (blog == null)
+            var post = dbContext.Posts.SingleOrDefault(b => b.PostId == postId);
+            if (post == null)
             {
-                return Ok("该博客不存在！");
+                return Ok("该列表不存在！");
             }
             else
             {
-                dbContext.Blogs.Remove(blog);
+                dbContext.Posts.Remove(post);
                 return Ok(dbContext.SaveChanges());
             }
-            
+
         }
     }
 }
