@@ -1,0 +1,47 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>OYan.EF.WebApi</name>
+    </assembly>
+    <members>
+        <member name="T:OYan.EF.WebApi.Controllers.BlogController">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:OYan.EF.WebApi.Controllers.BlogController.dbContext">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:OYan.EF.WebApi.Controllers.BlogController.#ctor(OYan.EF.MySQL.Common.OYanDbContext)">
+            <summary>
+            
+            </summary>
+            <param name="_context"></param>
+        </member>
+        <member name="M:OYan.EF.WebApi.Controllers.BlogController.List">
+            <summary>
+            
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:OYan.EF.WebApi.Controllers.BlogController.Create(OYan.EF.MySQL.Models.Blog)">
+            <summary>
+            
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:OYan.EF.WebApi.Controllers.BlogController.Delete(System.Int32)">
+            <summary>
+            
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:OYan.EF.WebAp.Program">
+            <summary>
+            
+            </summary>
+        </member>
+    </members>
+</doc>
